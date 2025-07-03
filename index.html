@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--为了实现太阳系，导入Three.js和OrbitControls.js-->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script type="module" src="./index.js"></script>
+    <link href="./index.css" rel="stylesheet" type="text/css"></link>
+    <title>Document</title>
+    
+</head>
+<body>
+    <canvas id="canvas-main"></canvas>
+    <div id="controls">
+        <ul id="ul-view_control">
+            <input type="button" id="button-vertical_camera">俯视图
+            <input type="button" id="button-horizontal_camera">侧视图
+            <input type="button" id="button-free_camera">自由视角
+        </ul>
+        <ul id="ul-move_control">
+            <input type="button" id="button-rotation">开启/停止自转
+            <input type="button" id="button-revolution">开启/停止公转
+            <input type="range" id="range-speed" value="0" min="-3" max="1" step="1">
+            <label for="range-speed">速度控制：×1</label>
+        </ul>
+        <ul id="ul-eclipse_control">
+            <input type="button" id="button-solar_eclipse_total">日全食
+            <input type="button" id="button-solar_eclipse_annular">日环食
+            <input type="button" id="button-solar_eclipse_partial">日偏食
+            <input type="button" id="button-lunar_eclipse_total">月全食
+            <input type="button" id="button-lunar_eclipse_partial">月偏食
+        </ul>
+    </div>
+    <div id="menu">
+        当前选中：<p id="focused_name">无</p>
+        <input type="file" id="file-skin">选择本地材质
+        <input type="button" id="button-skin_change">应用材质
+    </div>
+    <canvas id="canvas-pip"></canvas>
+</body>
+</html>
