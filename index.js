@@ -18,9 +18,12 @@ let cameraLerpTarget = null; //相机动画的目标对象
 let cameraLerpProgress = 0;        
 let cameraLerpDuration = 0.7; 
 let cameraLerpStartTime = 0;
-let cameraLerpFrom = null; //用于插值动画的七点         
+let cameraLerpFrom = null; //用于插值动画的起点         
 let initialCameraPosition, initialCameraTarget; //初始自由相机与target
 
+//地球自转
+const tilt = THREE.MathUtils.degToRad(23.4);
+const earthAxis = new THREE.Vector3(Math.sin(tilt), 0, Math.cos(tilt)).normalize();
 
 function initCamera(){
     //相机参数
@@ -93,6 +96,10 @@ function init() {
     earth.castShadow = true; // 地球投射阴影
     earth.receiveShadow = true; // 地球接收阴影
     earth.name = "地球";
+    //让贴图“北极”对准自定义地轴方向
+    const yAxis = new THREE.Vector3(0, -1, 0);
+    const alignQuat = new THREE.Quaternion().setFromUnitVectors(yAxis, earthAxis);
+    earth.quaternion.copy(alignQuat); // 很关键！
     //添加地球轨道(用于公转操作)
     const earthOrbitGeometry = 
         new THREE.TorusGeometry(CONSTS.EARTH_ORBIT_RADIUS, CONSTS.ORBIT_WIDTH, CONSTS.TORUS_SEGS, CONSTS.TORUS_SEGS);
@@ -177,7 +184,12 @@ function init() {
         //处理自转
         if(CONFIGS.isRotation){
             sun.rotation.y += CONSTS.SUN_ROTATION * CONFIGS.speed;
-            earth.rotation.z += CONSTS.EARTH_ROTATION * CONFIGS.speed;
+             // 地球用四元数自转
+            const rotationAngle = CONSTS.EARTH_ROTATION * CONFIGS.speed;
+            earth.quaternion.multiplyQuaternions(
+                new THREE.Quaternion().setFromAxisAngle(earthAxis, rotationAngle),
+                earth.quaternion
+            );
             moon.rotation.z += CONSTS.MOON_ROTATION * CONFIGS.speed;
         }
         //处理公转
