@@ -391,6 +391,10 @@ function init() {
         if(!focusedObject){
             return;
         }
+        if (!currentTexture) {
+            alert("请选择图片");
+            return;
+        }
         //加载currentTexture到focusedObject的材质
         const texture = textureLoader.load(currentTexture);
         const newMaterial = new THREE.MeshPhongMaterial({ map: texture });
