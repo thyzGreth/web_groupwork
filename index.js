@@ -312,7 +312,7 @@ function init() {
         currentCamera = verticalCamera;
         currentCamera.aspect = window.innerWidth / window.innerHeight;
         currentCamera.updateProjectionMatrix();
-        resetFocus();
+        resetFocusForVertical();
     }
     //按下按钮切换为侧视图
     function onHorizontalCameraButtonClick(){
@@ -326,7 +326,7 @@ function init() {
         currentCamera = freeCamera;
         currentCamera.aspect = window.innerWidth / window.innerHeight;
         currentCamera.updateProjectionMatrix();
-        resetFocus();
+        resetFocusForFree();
     }
     //重置聚焦状态的函数
    function resetFocus() {
@@ -347,6 +347,42 @@ function init() {
         focusedObject = null;
         updatePlanetName("无");
     }
+    function resetFocusForVertical() {
+    // 俯视相机初始位置和目标
+    const verticalPosition = new THREE.Vector3(0, 150, 0);  // y轴正方向
+    const verticalTarget = new THREE.Vector3(0, 0, 0);
+
+    // 设置相机位置和up
+    verticalCamera.position.copy(verticalPosition);
+    verticalCamera.up.set(0, 0, 1);
+    verticalCamera.lookAt(verticalTarget);
+
+    // 更新controls
+    controls.object = verticalCamera;
+    controls.target.copy(verticalTarget);
+    controls.update();
+
+    // 清除聚焦对象
+    focusedObject = null;
+    updatePlanetName("无");
+}
+function resetFocusForFree() {
+    // 自由视角初始位置、up、目标
+    const freePosition = new THREE.Vector3(0, 0, 150);
+    const freeTarget = new THREE.Vector3(0, 0, 0);
+
+    freeCamera.position.copy(freePosition);
+    freeCamera.up.set(0, 1, 0);  // three.js默认up
+    freeCamera.lookAt(freeTarget);
+
+    controls.object = freeCamera;
+    controls.target.copy(freeTarget);
+    controls.update();
+
+    focusedObject = null;
+    updatePlanetName("无");
+}
+
     //自转按钮：开启/暂停自转
     function onRotationButtonClick(){
         if(CONFIGS.isRotation == true){
