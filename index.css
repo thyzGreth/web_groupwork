@@ -17,6 +17,106 @@ html, body {
     height: 100%;
     display: block;
 }
+
+#arrow-indicator {
+    position: fixed;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 48px;
+    z-index: 98;
+    pointer-events: none;
+}
+
+/* 鼠标进入触发区域或菜单时隐藏箭头 (待调试)*/
+#left-trigger:hover ~ #arrow-indicator,
+#left-menu:hover ~ #arrow-indicator {
+    display: none;
+}
+
+#left-trigger {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    z-index: 99;
+}
+
+#left-menu {
+    position: fixed;
+    left: -300px; /* 默认隐藏在左侧 */
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(19, 19, 19, 0.765);
+    backdrop-filter: blur(5px);
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+#left-trigger:hover ~ #left-menu,
+#left-menu:hover {
+    left: 0;
+}
+
+/* 菜单内容样式 */
+#left-menu h3 {
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#left-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#left-menu li {
+    margin-bottom: 8px;
+}
+
+#left-menu button {
+    width: 100%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#left-menu input[type="file"] {
+    width: 242.667px;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#left-menu button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#left-menu button.active {
+    background: rgba(79, 195, 247, 0.4);
+    border-color: #4fc3f7;
+    font-weight: bold;
+}
+
+#left-menu input[type="range"] {
+    width: 100%;
+}
+
 /*画中画的画布：右上角*/
 #canvas-pip {
     position: absolute;
@@ -28,34 +128,9 @@ html, body {
     display: none; /*初始要隐藏画布*/
 }
 
-#ul-view_control {
-    position: absolute;
-    top: 0px;
-    left: 20px;
-    color: #ffffff;
-}
-
-#ul-move_control {
-    position: absolute;
-    top: 25px;
-    left: 20px;
-    color: #ffffff;
-}
-
-#ul-eclipse_control {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    color: #ffffff;
-}
-
-#menu {
-    position: absolute;
-    top: 65%;
-    left: 5%;
-    width: 30%;
-    height: 30%;
-    color: #ffffff;
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 5%;
+/* 当前选中对象样式 */
+#focused_name {
+    color: #4fc3f7;
+    font-weight: bold;
+    display: inline;
 }
