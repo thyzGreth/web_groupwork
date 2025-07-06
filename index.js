@@ -89,22 +89,6 @@ function updateRevolutionButtonText() {
 }
 
 function init() {
-    // 屏幕方向检测
-    function checkOrientation() {
-        const warning = document.getElementById('orientation-warning');
-        if (window.matchMedia("(orientation: portrait)").matches) {
-            warning.style.display = 'flex';
-        } else {
-            warning.style.display = 'none';
-        }
-    }
-    
-    // 初始检测
-    checkOrientation();
-    
-    // 监听方向变化
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', checkOrientation);
     //1.初始化操作；包括场景渲染器的初始化
     initScene();
     //2.相机的初始化
