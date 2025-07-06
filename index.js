@@ -1,9 +1,6 @@
+// 监听方向变化并在竖屏时给出提示
 if (window.matchMedia("(orientation: portrait)").matches) {
-    window.addEventListener("orientationchange", function() {
-        if (window.orientation === 0) { // 检测是否处于竖屏状态
-            alert("请切换到横屏模式查看！");
-        }
-    });
+    alert("为了获得更好的体验，请切换到横屏模式！");
 }
 
 import { CONSTS, CONFIGS } from './defs.js';
