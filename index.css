@@ -134,19 +134,3 @@ html, body {
     font-weight: bold;
     display: inline;
 }
-
-
-
-
-/* 竖屏时显示提示 */
-@media (orientation: portrait) {
-    body {
-        transform: rotate(90deg);
-        transform-origin: left top;
-        height: 100vh;
-        width: 100vw;
-    }
-    html, body {
-        overflow: hidden;
-    }
-}

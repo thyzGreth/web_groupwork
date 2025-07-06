@@ -1,8 +1,3 @@
-// 监听方向变化并在竖屏时给出提示
-if (window.matchMedia("(orientation: portrait)").matches) {
-    alert("为了获得更好的体验，请切换到横屏模式！");
-}
-
 import { CONSTS, CONFIGS } from './defs.js';
 let currentCamera, verticalCamera, horizontalCamera, freeCamera, pipCamera;//相机
 let scene, renderer, canvas;//场景、渲染器、画布
