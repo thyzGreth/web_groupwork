@@ -4,18 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- 添加屏幕方向控制 -->
+    <meta name="screen-orientation" content="landscape">
     <!--为了实现太阳系，导入Three.js和OrbitControls.js-->
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script type="module" src="./index.js"></script>
     <link href="./index.css" rel="stylesheet" type="text/css">
     </link>
-    <title>Document</title>
+    <title>太阳系模拟</title>
 
 </head>
 
 <body>
+    <!-- 横屏提示层 -->
+    <div id="orientation-warning">
+        <div class="message">
+            <p>请将设备横屏以获得最佳体验</p>
+            <div class="phone-icon">📱</div>
+        </div>
+    </div>
+
     <canvas id="canvas-main"></canvas>
 
     <!-- 添加左侧触发区域 -->
