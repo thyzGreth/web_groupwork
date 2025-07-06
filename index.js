@@ -1,3 +1,11 @@
+if (window.matchMedia("(orientation: portrait)").matches) {
+    window.addEventListener("orientationchange", function() {
+        if (window.orientation === 0) { // 检测是否处于竖屏状态
+            alert("请切换到横屏模式查看！");
+        }
+    });
+}
+
 import { CONSTS, CONFIGS } from './defs.js';
 let currentCamera, verticalCamera, horizontalCamera, freeCamera, pipCamera;//相机
 let scene, renderer, canvas;//场景、渲染器、画布

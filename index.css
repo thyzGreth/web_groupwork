@@ -135,46 +135,18 @@ html, body {
     display: inline;
 }
 
-/* 新增横屏提示样式 */
-#orientation-warning {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 2000; /* 确保在最顶层 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    display: none; /* 默认隐藏 */
-}
 
-#orientation-warning .message {
-    padding: 20px;
-}
 
-#orientation-warning .phone-icon {
-    font-size: 60px;
-    margin-top: 20px;
-    animation: rotatePhone 2s infinite;
-}
-
-@keyframes rotatePhone {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(90deg); }
-    100% { transform: rotate(90deg); }
-}
 
 /* 竖屏时显示提示 */
 @media (orientation: portrait) {
-    #orientation-warning {
-        display: flex;
+    body {
+        transform: rotate(90deg);
+        transform-origin: left top;
+        height: 100vh;
+        width: 100vw;
     }
-    #canvas-main, #left-menu, #arrow-indicator, #canvas-pip {
-        display: none !important;
+    html, body {
+        overflow: hidden;
     }
 }
